@@ -1,22 +1,25 @@
 provider "google" {
-  credentials = file(var.credentials_file_path)
-  project     = var.project_id
-  region      = var.region
-  zone        = var.compute_zone
+  project = var.project_id
+  region  = var.region
 }
 
-# Load variables
-variable "credentials_file_path" {}
-variable "project_id" {}
-
 module "vpc" {
-  source = "./vpc.tf"
+  source       = "./modules/vpc"
+  vpc_name     = var.vpc_name
+  subnet_name  = var.subnet_name
 }
 
 module "region" {
-  source = "./region.tf"
+  source      = "./modules/region"
+  project_id  = var.project_id
+  region      = var.region
 }
 
 module "cluster" {
-  source = "./cluster.tf"
+  source             = "./modules/cluster"
+  cluster_name       = var.cluster_name
+  num_nodes          = var.num_nodes
+  machine_type       = var.machine_type
+  node_label         = var.node_label
+  max_pods_per_node  = var.max_pods_per_node
 }
