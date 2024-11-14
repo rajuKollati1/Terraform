@@ -1,3 +1,8 @@
+variable "max_pods_per_node" {
+  description = "Maximum pods per node"
+  type        = number
+}
+
 resource "google_container_cluster" "primary" {
   name               = var.cluster_name
   location           = var.region
@@ -17,7 +22,8 @@ resource "google_container_node_pool" "primary_nodes" {
     labels                   = { namespace = var.node_label }
     oauth_scopes             = ["https://www.googleapis.com/auth/cloud-platform"]
 
-    # Specify max pods per node here
+    # Use max_pods_per_node here
     default_max_pods_per_node = var.max_pods_per_node
   }
 }
+
