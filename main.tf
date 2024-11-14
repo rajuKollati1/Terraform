@@ -22,4 +22,5 @@ module "cluster" {
   machine_type       = var.machine_type
   node_label         = var.node_label
   max_pods_per_node  = var.max_pods_per_node
+  region             = var.region 
 }
