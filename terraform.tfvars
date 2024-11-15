@@ -1,4 +1,4 @@
-project_id      = "your-gcp-project-id"
+project_id      = "halogen-obelisk-441705-u4"
 region          = "us-central1"
 compute_zone    = "us-central1-a"
 vpc_name        = "my-vpc"
