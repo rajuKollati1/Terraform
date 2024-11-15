@@ -33,5 +33,10 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
+      - name: Terraform Plan
+        id: terraform-plan
+        run: terraform plan -out=tfplan
+
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        if: ${{ github.event_name == 'push' }}
+        run: terraform apply -auto-approve tfplan
