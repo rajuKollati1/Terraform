@@ -7,5 +7,5 @@ network_range   = "10.15.0.0/16"
 cluster_name    = "my-cluster"
 num_nodes       = 2
 machine_type    = "e2-medium"
-node_label      = "environment=prod"
+node_label      = "environment_prod"
 max_pods_per_node = 80
