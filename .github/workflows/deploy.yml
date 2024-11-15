@@ -33,24 +33,10 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Check for Existing Cluster
-        id: check-cluster
-        run: |
-          CLUSTER_NAME="my-cluster"
-          ZONE="us-central1-a"
-          PROJECT="halogen-obelisk-441705-u4"
-          if gcloud container clusters describe $CLUSTER_NAME --zone $ZONE --project $PROJECT; then
-            echo "Cluster already exists." 
-            echo "exists=true" >> $GITHUB_ENV
-          else
-            echo "Cluster does not exist."
-            echo "exists=false" >> $GITHUB_ENV
-          fi
-
-      - name: Import Cluster to Terraform (if exists)
-        if: env.exists == 'true'
-        run: |
-          terraform import google_container_cluster.primary projects/halogen-obelisk-441705-u4/locations/us-central1/clusters/my-cluster
+      - name: Terraform Plan
+        id: terraform-plan
+        run: terraform plan -out=tfplan
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        if: ${{ github.event_name == 'push' }}
+        run: terraform apply -auto-approve tfplan
