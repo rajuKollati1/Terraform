@@ -27,4 +27,3 @@ resource "google_container_node_pool" "primary_nodes" {
     max_node_count = var.num_nodes * 2
   }
 }
-
