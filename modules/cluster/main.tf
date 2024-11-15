@@ -5,9 +5,6 @@ resource "google_container_cluster" "primary" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
-  ip_allocation_policy {
-    use_ip_aliases = true
-  }
 }
 
 resource "google_container_node_pool" "primary_nodes" {
