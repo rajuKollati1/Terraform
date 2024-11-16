@@ -2,6 +2,13 @@ provider "google" {
   project = var.project_id
   region  = var.region
 }
+terraform {
+  backend "gcs" {
+    bucket = "bucketraj"
+    prefix = "terraform/state"
+    project = "halogen-obelisk-441705-u4"
+  }
+}
 
 module "vpc" {
   source       = "./modules/vpc"
