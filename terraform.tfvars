@@ -1,7 +1,7 @@
 project_id      = "halogen-obelisk-441705-u4"
 region          = "us-central1"
 compute_zone    = "us-central1-a"
-vpc_name        = "my-vpc"
+vpc_name        = "rk-vpc"
 subnet_name     = "my-subnet"
 network_range   = "10.15.0.0/16"
 cluster_name    = "clusterraj"
