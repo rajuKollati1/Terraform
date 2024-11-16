@@ -6,7 +6,6 @@ terraform {
   backend "gcs" {
     bucket = "bucketraj"
     prefix = "terraform/state"
-    project = "halogen-obelisk-441705-u4"
   }
 }
 
